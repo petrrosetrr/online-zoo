@@ -1,0 +1,190 @@
+mixin container
+    .container(class=attributes.class)
+        block
+
+mixin header(page= "About")
+    header.header
+        h1.visually-hidden Online zoo
+        +container()(class = "header__container")
+            a.logo(href="index.html"): include /srcs/images/logo.svg
+            nav.main-nav.header__nav
+                ul
+                    -
+                        let links = {
+                            "About": "index.html",
+                            "Zoos": "zoos.html",
+                            "Map": "map.html",
+                            "Design": "https://bit.ly/2OWFRhM"
+                        };
+                    each link, title in links
+                        if  title == page
+                            li: a.main-nav__link.main-nav__link_active(href=link)= title
+                        else
+                            li: a.main-nav__link(href=link)= title
+
+            .theme-switcher
+                input#theme-switcher(type="checkbox")
+                label(for="theme-switcher")
+
+mixin socials(horisontal)
+    ul.socials(class= attributes.class + ((horisontal) ? " socials_horisontal":""))
+        li: a(href="https://instagram.com" target="_blank" aria-label="Instagram")
+            include /srcs/images/instagram-icon.svg
+        li: a(href="https://instagram.com" target="_blank" aria-label="Twitter")
+            include /srcs/images/twitter-icon.svg
+        li: a(href="https://instagram.com" target="_blank" aria-label="Youtube")
+            include /srcs/images/youtube-icon.svg
+        li: a(href="https://instagram.com" target="_blank" aria-label="Vk")
+            include /srcs/images/vk-icon.svg
+
+
+mixin animalCard(animalName, animalDesc)
+    li.animal-item(class=attributes.class + ` animal-item_${animalName}`)
+        .animal-item__content
+            p.animal-item__text=animalDesc
+            a.animal-item__btn.animal-item__btn_watch(href= `zoos.html?animal=${animalName}`) Watch online
+            a.animal-item__btn(data-animal= animalName) Donate
+
+mixin slider(active, total, adaptive = true, wide = false, arrows)
+    .slider(class= attributes.class)
+        ul.slider__list
+            block
+        .paginator(class= ((!adaptive) ? "paginator_light" : "") + " slider__paginator" + `${(wide) ? " " +
+            "paginator_wide":""}`)
+            p.paginator__counter
+                span.paginator__active= `${active}/`
+                span.paginator__total= total
+            input.paginator__stripe(type="range" min="1" max= total value=
+            active)
+        if arrows
+            btn.slider__btn.slider__btn_prev
+                include /srcs/images/right-arrow.svg
+            btn.slider__btn.slider__btn_next
+                include /srcs/images/right-arrow.svg
+mixin map
+    .map(class= attributes.class)
+        //img(srcset="images/map@2x.png 2x" src="images/map@1x.png" alt="map" width="1198" height="497")
+        .map__image
+        ul.map__list
+            - let i = 0;
+            -
+                let animals = {
+                    eagle:{region: "on an island near Los Angeles", population: "more than 270 pairs in 2013"},
+                    crocodile:{region: "on an island near Los Angeles", population: "more than 270 pairs in 2013"},
+                    ape:{region: "on an island near Los Angeles", population: "more than 270 pairs in 2013"},
+                    panda:{region: "on an island near Los Angeles", population: "more than 270 pairs in 2013"},
+                }
+            each animal, animalKey in animals
+                li.map__link
+                    a(href=""): img(src="images/map-" + animalKey + ".png" width="43" height="43" alt= animalKey)
+                    .tooltip.map__tooltip(class=`map__tooltip_${animalKey}`)
+                        img.tooltip__img(src="images/tooltip-eagle.png" width="65" height="65" alt= animalKey)
+                        h3.section__subtitle.tooltip__title West End Bald Eagle
+                        dl.tooltip__desc
+                            dt Region:
+                            dd= animal.region
+                            dt Population:
+                            dd= animal.population
+mixin footer(page= "About")
+    section.section.footer
+        +container(class= "footer__container")
+            .footer__row.footer__row_first
+                a(href="index.html").logo.footer__logo: include /srcs/images/logo.svg
+                nav.main-nav.footer__nav
+                    ul
+                        -
+                            let links = {
+                                "About": "index.html",
+                                "Zoos": "zoos.html",
+                                "Map": "map.html",
+                                "Design": "https://bit.ly/2OWFRhM"
+                            };
+                        each link, title in links
+                            if  title == page
+                                li: a.main-nav__link.main-nav__link_active(href=link)= title
+                            else
+                                li: a.main-nav__link(href=link)= title
+                a.btn.footer__donate(href="") Donate for volunteers
+            .footer__row.footer__row_second
+                form.contact-us.footer__contact-us(id="contact-us" action="https://echo.htmlacademy.ru" method="post")
+                    h2.section__subtitle.contact-us__title Contact us
+                    input.contact-us__input(type="text" placeholder="Name" name="name" required)
+                    input.contact-us__input(type="email" placeholder="Email" name="email" required)
+                    .contact-us__text-area
+                        textarea(name="feedback" autocomplete="offoff" maxlength="280" cols="30" rows="10" required)
+                        span.contact-us__text-area-before Please enter your message
+                    label.contact-us__agreement
+                        input.visually-hidden(name="agreement" type="checkbox" required)
+                        span I agree to the processing of Personal Data
+                    button.contact-us__send(type= "submit") Send
+                        include /srcs/images/form-arrow.svg
+                section.about-us.footer__about-us
+                    h2.about-us__title ZOO Online Centre
+                    address.about-us__address
+                        | 132, Address District, Street
+                        | Open Daily 10:00 am - 5:00 pm
+                        br/
+                        br/
+                        a(href="tel:+77021633433") T(702) 163-3433
+                        a(href= "mailto:zoo.online@gmail.com") zoo.online@gmail.com
+                    +socials(true)
+            .footer__row.footer__row_third
+                p.
+                    ©Noora Sagnayeva<br>
+                    ©RSSchool and ©Yem Digital - 2021
+mixin popup-donate
+    artice.popup.popup-donate(id="donate")
+        .popup-donate__content
+            h2.popup-donate__title Donate for your animal
+            form.popup-donate__form(id="donate-form" action="https://echo.htmlacademy.ru" method="post")
+                fieldset.popup-donate__fieldset.popup-donate__fieldset_animal
+                    label.popup-donate__label
+                        span Choose an animal
+                        select.popup-donate__input(name="animal")
+                            option(value="" selected disabled hidden)
+                            option(value="eagle") Eagle
+                            option(value="panda") Panda
+                            option(value="ape") Ape
+                    label.popup-donate__label
+                        span To donate
+                        input.popup-donate__input(type="number" required)
+                fieldset.popup-donate__fieldset.popup-donate__fieldset_about
+                    legend.section__subtitle.popup-donate__fieldset-title About you
+                    label.popup-donate__label
+                        span Name
+                        input.popup-donate__input(type= "text")
+                    label.popup-donate__label
+                        span Email
+                        input.popup-donate__input(type= "email")
+                    label.popup-donate__label
+                        span Phone
+                        .popup-donate__input.popup-donate__input_phone
+                            select(name= "country-code")
+                                option(value="+7" selected) +7
+                            input(type= "number" required)
+                fieldest.popup-donate__fieldset.popup-donate__fieldset_checkout
+                    legend.section__subtitle.popup-donate__fieldset-title Checkout
+                    label.popup-donate__label
+                        span Card number
+                        input.popup-donate__input(type="number" required)
+                    label.popup-donate__label
+                        span Expiry date
+                        .popup-donate__input.popup-donate__input_expiry-date
+                            select(name="expiry-year" required)
+                                option(value="" selected disabled hidden)
+                                - let i = 2020;
+                                while i++ <= 2028
+                                    option(value= i)= i
+                            select(name="expiry-month" required)
+                                option(value="" selected disabled hidden)
+                                -  i = 0;
+                                while i++ <= 12
+                                    option(value= i)= i
+                    label.popup-donate__label
+                        span CVC
+                        input.popup-donate__input(type="number" pattern="([0-9]|[0-9]|[0-9])"
+                            autocomplete="off" required)
+                p.popup-donate__text.
+                    If don’t cancel your subscription before the trial ends on April 15, 2021,
+                    you agree that you will automatically be charged
+                button.btn.popup-donate__btn(type="submit") Donate

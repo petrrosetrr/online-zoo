@@ -1,0 +1,132 @@
+extends includes/_base
+
+block header
+    +header("About")
+block main
+    main
+        -
+            let data = {
+                panda: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                eagle: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                ape: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                crocodile: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                eagle: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                fox: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                sloth: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos.",
+                elephant: "Panda’s name is Bei Bei. He is 2 years old. Bei Bei is from China. He loves bamboos."
+            }
+
+        section.watch
+            +container(class= "watch__container")
+                h2.watch__title Watch your favorite animal online
+                a.btn.btn_watch.watch__btn Watch online
+                +socials()(class= "watch__socials")
+                +slider("02", "08", false, false)(class = "watch__slider")
+                    - let i = 1;
+                    each animalDesc, animalName in data
+                        +animalCard(animalName, animalDesc)(class= "watch__item " + ((i == 2) ? "animal-item_active" :
+                            ""))
+                        - i++;
+
+        section.section.how-it-works
+            +container(class= "how-it-works__container")
+                h2.section__title How it works?
+                p.how-it-works__text.
+                    As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires on precious species and their habitat,
+                    and we are determined to assist in all aspects, including providing veterinary support and raising much-needed emergency
+                    funds. Zoo Online saves wildlife and inspires everyone to make conservation a priority in their lives. Animals have the right to a
+                    pain-free and happy life. They have equal claim to the resources of this planet, and deserve a life
+                    of dignity and compassion.As a voice for wildlife, we are devastated by the impact of the 2020 Australian
+                    bushfires on precious species and their habitat.
+                +slider("01", "04", true, true)(class= "how-it-works__slider")
+                    li.how-it-works__item: img(srcset="images/how-it-works-1@2x.jpg 2x" src="images/how-it-works-1@1x.jpg"
+                        alt="slider-image")
+                    li.how-it-works__item: img(srcset="images/how-it-works-2@2x.jpg 2x" src="images/how-it-works-2@1x.jpg"
+                        alt="slider-image")
+                    li.how-it-works__item: img(srcset="images/how-it-works-3@2x.jpg 2x" src="images/how-it-works-3@1x.jpg"
+                        alt="slider-image")
+                    li.how-it-works__item: img(srcset="images/how-it-works-4@2x.jpg 2x" src="images/how-it-works-4@1x.jpg"
+                        alt="slider-image")
+
+
+        aside.section.section_additional.inspiration
+            +container
+                ul.inspiration__list
+                    li.inspiration__item
+                        include /srcs/images/problem-solving.svg
+                        p.section__subtitle.inspiration__subtitle What inspires us?
+                        p.inspiration__text.
+                            As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires on
+                            precious species and their habitat, and we are determined to assist in all aspects.
+                    li.inspiration__item
+                        include /srcs/images/achievement.svg
+                        p.section__subtitle.inspiration__subtitle Our mission
+                        p.inspiration__text.
+                            Zoo Online saves wildlife and inspires everyone to make conservation a priority in their lives.
+                    li.inspiration__item
+                        include /srcs/images/love.svg
+                        p.section__subtitle.inspiration__subtitle What we believe in?
+                        p.inspiration__text.
+                            Animals have the right to a pain-free and happy life. They have equal claim to the resources
+                            of this planet, and deserve a life of dignity and compassion.
+
+
+        section.section.pets-in-zoo
+            +container(class= "pets-in-zoo__container")
+                h2.section__title.pets-in-zoo__title Pets in zoo
+                +slider("01", "08", true, false, true)(class= "pets-in-zoo__slider")
+                    - let i = 1;
+                    each animalDesc, animalName in data
+                        +animalCard(animalName, animalDesc)(class= "pets-in-zoo__item " + ((i == 1) ?
+                            "animal-item_active" :
+                            ""))
+                        - i++;
+                a.btn.pets-in-zoo__btn Choose your favorite
+
+        section.section.section_additional.pay-and-feed
+            +container
+                h2.section__title Pay and feed
+                p.pay-and-feed__text.
+                    The opportunity to easily and naturally
+                    (but as often as possible) donate to the needs of animals that you like.
+                ul.pay-and-feed__list
+                    li.pay-and-feed__item
+                        include /srcs/images/card.svg
+                        p.section__subtitle.pay-and-feed__subtitle You pay with a VISA card
+                    li.pay-and-feed__item
+                        include /srcs/images/zoo-1.svg
+                        p.section__subtitle.pay-and-feed__subtitle Payment goes to the Zoo
+                    li.pay-and-feed__item
+                        include /srcs/images/panda-1.svg
+                        p.section__subtitle.pay-and-feed__subtitle Panda gets the bamboo
+                a.btn.pay-and-feed__btn Donate
+
+        section.section.testimonials
+            +container(class= "testimonials__container")
+                h2.section__title.testimonials__title Testimonials
+                +slider("02", "08", true, false, true)(class= "testimonials__slider")
+                    li.testimonials__item
+                        img.testimonials__profile-pic.testimonials__profile-pic_def(src="/images/user-def.svg"
+                            width="68" height="68" alt="photo")
+                        p.section__subtitle.testimonials__name Nastya Sidorova
+                        p.testimonials__text.
+                            As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires
+                            on precious species and their habitat.
+                    li.testimonials__item
+                        img.testimonials__profile-pic(src="/images/vlad.png" width="68" height="68" alt="photo")
+                        p.section__subtitle.testimonials__name Vlad Kim
+                        p.testimonials__text.
+                            As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires
+                            on precious species and their habitat.
+        section.section.section_additional.map-section
+            +container
+                h2.section__title.map-section__title Map
+                +map(class= "map-section__map")
+                a.btn.btn_watch.map-section__btn Watch online
+block footer
+    +footer("About")
+block popups
+    +popup-donate
+
+//- TODO: Интерактивность элементов (ховеры фокусы курсор поинтер и тд)
+//- TODO: href ссылок

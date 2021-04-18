@@ -1,0 +1,63 @@
+extends includes/_base-inner
+
+block header
+    +header("Zoos")
+block main
+    main.section.section_inner.broadcast
+        +container(class= "broadcast__container")
+            aside
+                +slider("01", "08", true, false, true)(class="broadcast__slider")
+                    - let animals = ["ape", "panda", "crocodile", "eagle", "tiger", "elephant", "lion", "zebra"]
+                    each animal, index in animals
+                        li.animal-round
+                            input.visually-hidden(id= "radio-" + animal type= "radio" name= "animal" value= animal checked=
+                            (index == 1
+                                || false))
+                            label(for="radio-" + animal)
+                                img(src= "images/" + animal + "-rounded.png" alt= animal width="108" height="108")
+            section.zoo-page
+                h2.section__title.zoo-page__title The Beijing Zoo
+                .zoo-page__gallery
+                    iframe.zoo-page__video(width="246" height="141" src="https://www.youtube" +
+                    ".com/embed/OObOQ2GElhA?controls=0"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;" +
+                    " encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                        img(src="images/panda-zoo.jpg")
+                    iframe.zoo-page__video(width="246" height="141" src="https://www.youtube.com/embed/OObOQ2GElhA?controls=0"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;" +
+                    " encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                        img(src="images/panda-zoo.jpg")
+                    iframe.zoo-page__video(width="246" height="141" src="https://www.youtube.com/embed/OObOQ2GElhA?controls=0"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;" +
+                    " encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                        img(src="images/panda-zoo.jpg")
+                    iframe.zoo-page__video(width="246" height="141" src="https://www.youtube.com/embed/OObOQ2GElhA?controls=0"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;" +
+                    " encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                        img(src="images/panda-zoo.jpg")
+                    .zoo-page__gallery-switcher
+                        input(id="video1" type="radio" name="video" value="1" checked)
+                        label(for="video1")
+
+                        input(id="video2" type="radio" name="video" value="2")
+                        label(for="video2")
+
+                        input(id="video3" type="radio" name="video" value="3")
+                        label(for="video3")
+
+                        input(id="video4" type="radio" name="video" value="4")
+                        label(for="video4")
+                .zoo-page__description
+                    dl
+                        dt.section__subtitle Population:
+                        dd About 1,590 individuals
+                        dt.section__subtitle Habitat:
+                        dd Temperate forests high in the mountains of southwest China
+                        dt.section__subtitle     Diet:
+                        dd.
+                            A panda's daily diet consists almost entirely of the leaves, stems and shoots of various
+                            bamboo species. Bamboo contains very little nutritional value so pandas must eat 12-38kg
+                            every day to meet their energy needs.
+                    a.btn.zoo-page__btn Feed
+block footer
+    +footer("Zoos")

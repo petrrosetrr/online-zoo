@@ -1,0 +1,31 @@
+extends includes/_base-inner
+
+block header
+    +header("Map")
+block main
+    main.section.setion_inner.choose
+        +container
+            h2.section__title.choose__title Choose your favorite
+            p.choose__text.
+                As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires on precious species and their habitat, and we are
+                determined to assist in all aspects, including providing veterinary support and raising much-needed emergency funds. Zoo Online saves wildlife
+                and inspires everyone to make conservation a priority in their lives. Animals have the right to a pain-free and happy life. They have equal claim
+                to the resources of this planet, and deserve a life of dignity and compassion.As a voice for wildlife, we are devastated by the impact of the 2020
+                Australian bushfires on precious species and their habitat.
+            +slider("02", "08", true, false, true)(class= "choose__slider")
+                - let animals = ["ape", "panda", "crocodile", "eagle", "tiger", "elephant", "lion", "zebra"]
+                each animal, index in animals
+                    li.animal-round
+                        input.visually-hidden(id= "radio-" + animal type= "radio" name= "animal" value= animal checked=
+                        (index == 1
+                            || false))
+                        label(for="radio-"+ animal)
+                            img(src= "images/"+ animal + "-rounded.png" alt= animal width="108" height="108")
+
+            +map(class="choose__map")
+            a.btn.btn_watch.choose__btn Watch online
+block footer
+    +footer("Map")
+block popups
+    +popup-donate
+//- TODO: Доделать карту на этой странице
