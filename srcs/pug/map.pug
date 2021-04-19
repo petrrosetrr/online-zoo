@@ -3,8 +3,8 @@ extends includes/_base-inner
 block header
     +header("Map")
 block main
-    main.section.setion_inner.choose
-        +container
+    main.section.section_inner.choose
+        +container(class= "choose__container")
             h2.section__title.choose__title Choose your favorite
             p.choose__text.
                 As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires on precious species and their habitat, and we are
@@ -26,6 +26,7 @@ block main
             a.btn.btn_watch.choose__btn Watch online
 block footer
     +footer("Map")
+
 block popups
     +popup-donate
-//- TODO: Доделать карту на этой странице
+//- TODO: Доделать карту

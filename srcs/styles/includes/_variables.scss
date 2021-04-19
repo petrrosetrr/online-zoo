@@ -1,23 +1,41 @@
+*, *::before, *::after {
+    transition-duration: .4s;
+    transition-timing-function: linear;
+    transition-property: background-color, color;
+}
+
 html {
     --bg-primary: white;
     --bg-additional: #F2F2F2;
-    --text-primary: #4F4F4F;
+    --bg-inner: #FBFBFB;
+    --text-primary: rgba(79, 79, 79);
     --text-headings: #333333;
 
-    --switcher: white;
-    --switcher-bg: #F2F2F2;
-    --switcher-shadow: rgba(6, 12, 70, 0.15);
+    --switch: white;
+    --switch-bg: #F2F2F2;
+    --switch-shadow: rgba(6, 12, 70, 0.15);
 
-    --testimonial: #FEFEFE;
+    --bg-testimonial: #FEFEFE;
     --map: url("../images/map.svg");
-    //--map-dark: url("../images/map-dark.svg");
 
     --popup-bg: #F9F9F9;
     --popup-title: #313131;
     --popup-text: #828282;
 }
 
+html.dark-mode {
+    --bg-primary: #333333;
+    --bg-additional: #4F4F4F;
+    --bg-inner: #4F4F4F;
+    --text-primary: #F2F2F2;
+    --text-headings: #FEFEFE;
 
+    --switch-bg: #4F4F4F;
+    --switch: #1B1B1B;
+
+    --map: url("../images/map-dark.svg");
+    --bg-testimonial: #3C3C3C;
+}
 
 
 

@@ -7,7 +7,7 @@ mixin header(page= "About")
         h1.visually-hidden Online zoo
         +container()(class = "header__container")
             a.logo(href="index.html"): include /srcs/images/logo.svg
-            nav.main-nav.header__nav
+            nav#menu.main-nav.header__nav
                 ul
                     -
                         let links = {
@@ -22,10 +22,11 @@ mixin header(page= "About")
                         else
                             li: a.main-nav__link(href=link)= title
 
-            .theme-switcher
-                input#theme-switcher(type="checkbox")
-                label(for="theme-switcher")
-
+            .theme-switch.header__switch
+                input#theme-switch(type="checkbox")
+                label(for="theme-switch")
+            button#burger.header__menu-btn
+                span
 mixin socials(horisontal)
     ul.socials(class= attributes.class + ((horisontal) ? " socials_horisontal":""))
         li: a(href="https://instagram.com" target="_blank" aria-label="Instagram")
@@ -47,8 +48,9 @@ mixin animalCard(animalName, animalDesc)
 
 mixin slider(active, total, adaptive = true, wide = false, arrows)
     .slider(class= attributes.class)
-        ul.slider__list
-            block
+        .slider__wrapper
+            ul.slider__list
+                block
         .paginator(class= ((!adaptive) ? "paginator_light" : "") + " slider__paginator" + `${(wide) ? " " +
             "paginator_wide":""}`)
             p.paginator__counter
@@ -63,7 +65,6 @@ mixin slider(active, total, adaptive = true, wide = false, arrows)
                 include /srcs/images/right-arrow.svg
 mixin map
     .map(class= attributes.class)
-        //img(srcset="images/map@2x.png 2x" src="images/map@1x.png" alt="map" width="1198" height="497")
         .map__image
         ul.map__list
             - let i = 0;
@@ -81,54 +82,54 @@ mixin map
                         img.tooltip__img(src="images/tooltip-eagle.png" width="65" height="65" alt= animalKey)
                         h3.section__subtitle.tooltip__title West End Bald Eagle
                         dl.tooltip__desc
-                            dt Region:
-                            dd= animal.region
-                            dt Population:
-                            dd= animal.population
+                            div
+                                dt Region:
+                                dd= animal.region
+                            div
+                                dt Population:
+                                dd= animal.population
 mixin footer(page= "About")
-    section.section.footer
+    footer.section.footer
         +container(class= "footer__container")
-            .footer__row.footer__row_first
-                a(href="index.html").logo.footer__logo: include /srcs/images/logo.svg
-                nav.main-nav.footer__nav
-                    ul
-                        -
-                            let links = {
-                                "About": "index.html",
-                                "Zoos": "zoos.html",
-                                "Map": "map.html",
-                                "Design": "https://bit.ly/2OWFRhM"
-                            };
-                        each link, title in links
-                            if  title == page
-                                li: a.main-nav__link.main-nav__link_active(href=link)= title
-                            else
-                                li: a.main-nav__link(href=link)= title
-                a.btn.footer__donate(href="") Donate for volunteers
-            .footer__row.footer__row_second
-                form.contact-us.footer__contact-us(id="contact-us" action="https://echo.htmlacademy.ru" method="post")
-                    h2.section__subtitle.contact-us__title Contact us
-                    input.contact-us__input(type="text" placeholder="Name" name="name" required)
-                    input.contact-us__input(type="email" placeholder="Email" name="email" required)
-                    .contact-us__text-area
-                        textarea(name="feedback" autocomplete="offoff" maxlength="280" cols="30" rows="10" required)
-                        span.contact-us__text-area-before Please enter your message
-                    label.contact-us__agreement
-                        input.visually-hidden(name="agreement" type="checkbox" required)
-                        span I agree to the processing of Personal Data
-                    button.contact-us__send(type= "submit") Send
-                        include /srcs/images/form-arrow.svg
-                section.about-us.footer__about-us
-                    h2.about-us__title ZOO Online Centre
-                    address.about-us__address
-                        | 132, Address District, Street
-                        | Open Daily 10:00 am - 5:00 pm
-                        br/
-                        br/
-                        a(href="tel:+77021633433") T(702) 163-3433
-                        a(href= "mailto:zoo.online@gmail.com") zoo.online@gmail.com
-                    +socials(true)
-            .footer__row.footer__row_third
+            a(href="index.html").logo.footer__logo: include /srcs/images/logo.svg
+            nav.main-nav.footer__nav
+                ul
+                    -
+                        let links = {
+                            "About": "index.html",
+                            "Zoos": "zoos.html",
+                            "Map": "map.html",
+                            "Design": "https://bit.ly/2OWFRhM"
+                        };
+                    each link, title in links
+                        if  title == page
+                            li: a.main-nav__link.main-nav__link_active(href=link)= title
+                        else
+                            li: a.main-nav__link(href=link)= title
+            a.btn.footer__donate(href="") Donate for volunteers
+            form.contact-us.footer__contact-us(id="contact-us" action="https://echo.htmlacademy.ru" method="post")
+                h2.section__subtitle.contact-us__title Contact us
+                input.contact-us__input(type="text" placeholder="Name" name="name" required)
+                input.contact-us__input(type="email" placeholder="Email" name="email" required)
+                .contact-us__text-area
+                    textarea(name="feedback" autocomplete="offoff" maxlength="280" cols="30" rows="10" required)
+                    span.contact-us__text-area-before Please enter your message
+                label.contact-us__agreement
+                    input.visually-hidden(name="agreement" type="checkbox" required)
+                    span I agree to the processing of Personal Data
+                button.contact-us__send(type= "submit") Send
+                    include /srcs/images/form-arrow.svg
+            section.about-us.footer__about-us
+                h2.about-us__title ZOO Online Centre
+                address.about-us__address
+                    | 132, Address District, Street
+                    | Open Daily 10:00 am - 5:00 pm
+                    br/
+                    br/
+                    a(href="tel:+77021633433") T(702) 163-3433
+                    a(href= "mailto:zoo.online@gmail.com") zoo.online@gmail.com
+                +socials(true)
+            .footer__copyright
                 p.
                     ©Noora Sagnayeva<br>
                     ©RSSchool and ©Yem Digital - 2021
