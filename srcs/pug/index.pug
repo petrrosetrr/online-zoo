@@ -73,7 +73,7 @@ block main
 
         section.section.pets-in-zoo
             +container(class= "pets-in-zoo__container")
-                h2.section__title.pets-in-zoo__title Pets in zoo
+                h2.section__title.pets-in-zoo__title Pets in Zoo
                 +slider("01", "08", true, false, true)(class= "pets-in-zoo__slider")
                     - let i = 1;
                     each animalDesc, animalName in data
@@ -106,14 +106,14 @@ block main
                 h2.section__title.testimonials__title Testimonials
                 +slider("02", "08", true, false, true)(class= "testimonials__slider")
                     li.testimonials__item
-                        img.testimonials__profile-pic.testimonials__profile-pic_def(src="/images/user-def.svg"
+                        img.testimonials__profile-pic.testimonials__profile-pic_def(src="images/user-def.svg"
                             width="68" height="68" alt="photo")
                         p.section__subtitle.testimonials__name Nastya Sidorova
                         p.testimonials__text.
                             As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires
                             on precious species and their habitat.
                     li.testimonials__item
-                        img.testimonials__profile-pic(src="/images/vlad.png" width="68" height="68" alt="photo")
+                        img.testimonials__profile-pic(src="images/vlad.png" width="68" height="68" alt="photo")
                         p.section__subtitle.testimonials__name Vlad Kim
                         p.testimonials__text.
                             As a voice for wildlife, we are devastated by the impact of the 2020 Australian bushfires
