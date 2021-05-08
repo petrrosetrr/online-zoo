@@ -77,7 +77,7 @@ mixin map
                     panda:{region: "on an island near Los Angeles", population: "more than 270 pairs in 2013"},
                 }
             each animal, animalKey in animals
-                li.map__link
+                li.map__link(class="map__link_" + animalKey data-animal= animalKey)
                     a(href=""): img(src="images/map-" + animalKey + ".png" width="43" height="43" alt= animalKey)
                     .tooltip.map__tooltip(class=`map__tooltip_${animalKey}`)
                         img.tooltip__img(src="images/tooltip-eagle.png" width="65" height="65" alt= animalKey)
@@ -107,7 +107,7 @@ mixin footer(page= "About")
                             li: a.main-nav__link.main-nav__link_active(href=link)= title
                         else
                             li: a.main-nav__link(href=link)= title
-            a.btn.footer__donate(href="") Donate for volunteers
+            a.btn.footer__donate.donate-btn(href="") Donate for volunteers
             form.contact-us.footer__contact-us(id="contact-us" action="https://echo.htmlacademy.ru" method="post")
                 h2.section__subtitle.contact-us__title Contact us
                 input.contact-us__input(type="text" placeholder="Name" name="name" required)

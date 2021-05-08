@@ -303,6 +303,9 @@ html {scroll-behavior: smooth;}
         border: none;
         filter: drop-shadow(2px 0px 2px rgba(0, 0, 0, 0.08));
         cursor: pointer;
+        * {
+            pointer-events: none;
+        }
         &_prev {
             left: -37px;
             transform: rotate(180deg);
@@ -388,6 +391,7 @@ html {scroll-behavior: smooth;}
     border-radius: 5px;
     overflow: hidden;
     display: flex;
+    transition-property: width, height, margin, transform;
     transition-duration: .3s;
     &__content {
         width: 100%;
@@ -402,6 +406,7 @@ html {scroll-behavior: smooth;}
         column-gap: 10px;
         padding: 23px 23px 34px;
         background-image: linear-gradient(357.17deg, #000000 -56.45%, rgba(0, 0, 0, 0) 65.03%);
+        transition-delay: .2s;
         transition-duration: .4s;
         transition-timing-function: ease-out;
         transition-property: transform, opacity;
@@ -511,7 +516,7 @@ html {scroll-behavior: smooth;}
         right: -99999px;
         left: 480px;
         .slider__list {
-            padding-left: 135px;
+            margin-left: 135px;
             height: 352px;
             align-items: center;
         }
@@ -605,7 +610,7 @@ html {scroll-behavior: smooth;}
             top: 287px;
             left: 32px;
             .slider__list {
-                padding-left: 71px;
+                margin-left: 71px;
             }
             .slider__paginator {
                 margin-left: 287px;
@@ -628,8 +633,8 @@ html {scroll-behavior: smooth;}
             left: -7px;
             .slider__list {
                 height: 202px;
-                padding-left: 21px;
                 gap: 9px;
+                margin-left: 17px;
             }
             .slider__paginator {
                 width: 140px;
@@ -729,6 +734,9 @@ html {scroll-behavior: smooth;}
     }
     &__slider {
         margin-top: 30px;
+        .slider__list {
+            gap: 0;
+        }
     }
     &__watch {
         margin: 30px auto 0;
@@ -736,6 +744,8 @@ html {scroll-behavior: smooth;}
     &__item {
         width: 100%;
         height: 323px;
+        transition-duration: .3s;
+        transition-property: margin, transform;
         img {
             width: 100%;
             height: 100%;
@@ -1173,7 +1183,6 @@ html {scroll-behavior: smooth;}
         background-repeat: no-repeat;
     }
     &__list {
-        overflow: hidden;
         position: absolute;
         top: 0;
         left: 0;
@@ -1207,6 +1216,13 @@ html {scroll-behavior: smooth;}
                 background-image: url("../images/map-point-red.svg");
             }
             &:hover + .map__tooltip, &:focus + .map__tooltip {
+                display: grid;
+                opacity: 1;
+            }
+        }
+        &_active {
+            a{background-image: url("../images/map-point-red.svg");}
+            a + .map__tooltip {
                 display: grid;
                 opacity: 1;
             }
@@ -1647,10 +1663,14 @@ html {scroll-behavior: smooth;}
     position: fixed;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     background: rgba(51, 51, 51, 0.45);
+    &_active {
+        display: flex;
+        overflow: hidden;
+    }
     &__content {
         width: 1200px;
         height: 795px;
@@ -1804,6 +1824,8 @@ html {scroll-behavior: smooth;}
 }
 
 .animal-round {
+    pointer-events: all;
+    cursor: pointer;
     label {
         display: block;
         width: 108px;
@@ -1833,6 +1855,7 @@ html {scroll-behavior: smooth;}
             //transition-delay: .5s;
         }
     }
+    input, label {pointer-events: none;}
     input:checked + label {
         position: relative;
         width: 157px;
@@ -1984,6 +2007,7 @@ html {scroll-behavior: smooth;}
         }
         .slider__list {
             height: 85px;
+            min-width: 225px;
         }
         .slider__paginator {
             margin-top: 20px;
@@ -1991,10 +2015,10 @@ html {scroll-behavior: smooth;}
         .slider__btn {
             top: 28px;
             &_prev {
-                left: -30px;
+                left: -35px;
             }
             &_next {
-                right: -30px;
+                right: -35px;
             }
         }
     }

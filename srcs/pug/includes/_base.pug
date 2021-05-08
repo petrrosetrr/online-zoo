@@ -5,14 +5,15 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet" href="css/style.css" type="text/css")
-        script(src="scripts/dark-theme.js" defer)
-        script(src="scripts/menu.js" defer)
+        block scripts
+            script(src="scripts/dark-theme.js" defer)
+            script(src="scripts/menu.js" defer)
+            script(src="scripts/donate.js" defer)
         title Online zoo
     block body
         body.body
             block header
             block main
             block footer
-            section.popups
-                block popups
+    block popups
 
